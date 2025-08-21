@@ -1,5 +1,8 @@
 
 
+"""
+This file contains the database operations for the bank application.
+"""
 
 class bankOperations():
     
