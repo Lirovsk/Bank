@@ -1,4 +1,4 @@
-from .Model import agencyInfo, engine, Base 
+from .Models.Model import agencyInfo, engine, Base 
 from sqlalchemy import Inspector, create_engine
 from sqlalchemy.orm import Session
 

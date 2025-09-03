@@ -1,8 +1,8 @@
-from .Model import Base, engine, agencyInfo
+from .Models.Model import Base, engine, agencyInfo
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine
-from .people_accounts import Pessoa, Conta
-from .people_accounts import Base as Base_pessoas
+from .Models.people_accounts import Pessoa, Conta
+from .Models.people_accounts import Base as Base_pessoas
 
 class agencyStorageCreation:
     def __init__(self, name: str, version: str, senha: str):
