@@ -1,6 +1,7 @@
-from .Models.Model import agencyInfo, engine, Base 
-from sqlalchemy import Inspector, create_engine
+from .Models import agencyInfo, engine, Base 
+from sqlalchemy import Engine, Inspector, create_engine
 from sqlalchemy.orm import Session
+from .Models import BasePeopleAccounts
 
 class agenciesManager:
     
@@ -37,3 +38,14 @@ class agenciesManager:
         name = agency.name
         url = f"sqlite:///agencies/{name}.db"
         return create_engine(url)
+    
+    @staticmethod
+    def create_table(engine: Engine):
+        """creates the tables for an existing agency"""
+        
+        inspector = Inspector(engine)
+        if not (inspector.has_table("pessoas") and inspector.has_table("contas")):
+            from .agency_creation import agencyCreation
+            BasePeopleAccounts.metadata.create_all(engine)
+        
+    
