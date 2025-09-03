@@ -45,7 +45,6 @@ class agenciesManager:
         
         inspector = Inspector(engine)
         if not (inspector.has_table("pessoas") and inspector.has_table("contas")):
-            from .agency_creation import agencyCreation
             BasePeopleAccounts.metadata.create_all(engine)
         
     
