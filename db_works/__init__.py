@@ -8,6 +8,7 @@ from .agency_access import agenciesManager
 from .agency_creation import agencyCreation
 from .agency_creation import agencyStorageCreation
 from .people import peopleManagement
-    
+from .account import accountManagement
+from .operations import operations    
 
-__version__ = "0.3.0"
+__version__ = "0.4.0"
