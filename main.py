@@ -95,63 +95,69 @@ while True:
                         
                         clear()
                         print(f"Welcome {person.nome}!")
-                        print(MENU3)
-                        option3 = input("Select an option: ")
-                        match option3:
-                            case '1':
-                                # Create bank account
-                                account_number = input("Enter account number: ")
-                                initial_balance = float(input("Enter initial balance: "))
-                                password = input("Set a password for the bank account: ")
-                                account = accountManagement.create_account(account_number, initial_balance, password)
-                                accountManagement.add_account_to_db(account, person, engine)
-                                clear()
-                                print("Account created successfully!")
-                                
-                            case '2':
-                                # Access bank account
-                                accounts = accountManagement.get_all_accounts(person.id, engine)
-                                
-                                for account in accounts:
-                                    print(f"Account Number: {account.numero}, Balance: {account.saldo}")
-                                    
-                                account_number = input("Enter account number: ")
-                                clear()
-                                
-                                while True:
+                        while True:
+                            print(MENU3)
+                            option3 = input("Select an option: ")
+                            match option3:
+                                case '1':
+                                    # Create bank account
+                                    account_number = input("Enter account number: ")
+                                    initial_balance = float(input("Enter initial balance: "))
+                                    password = input("Set a password for the bank account: ")
+                                    account = accountManagement.create_account(account_number, initial_balance, password)
+                                    accountManagement.add_account_to_db(account, person, engine)
                                     clear()
-                                    print("Which operation do you want to do?")
-                                    input_operation = input("1 - Withdraw\n2 - Deposit\n3 - Get history of transactions\n0 - Back to previous menu\n")
+                                    print("Account created successfully!")
                                     
-                                    match input_operation:
-                                        case '1':
-                                            amount = float(input("Enter the amount to withdraw: "))
-                                            password_ = input("Enter your password: ")
-                                            operations.withdraw(account_number, amount, password_, engine)
-                                            oia = input("Press Enter to continue...")
+                                case '2':
+                                    # Access bank account
+                                    accounts = accountManagement.get_all_accounts(person.id, engine)
+                                    
+                                    for account in accounts:
+                                        print(f"Account Number: {account.numero}, Balance: {account.saldo}")
                                         
-                                        case '2':
-                                            amount = float(input("Enter the amount to deposit: "))
-                                            password_ = input("Enter your password: ")
-                                            operations.deposit(account_number, amount, password_, engine)
-                                            oia = input("Press Enter to continue...")
+                                    account_number = input("Enter account number: ")
+                                    clear()
+                                    
+                                    while True:
+                                        # loop to perform operations on the selected account
+                                        clear()
+                                        print("Which operation do you want to do?")
+                                        input_operation = input("1 - Withdraw\n2 - Deposit\n3 - Get history of transactions\n0 - Back to previous menu\n")
                                         
-                                        case '3':
-                                            # Get and display transaction history
-                                            operations.get_history(account_number)
-                                            oia = input("Press Enter to continue...")
-                                        
-                                        case '0':
-                                            clear()
-                                            break
-                                        
-                                        case _:
-                                            print("Invalid operation selected. Please try again.")
-                                            clear()
-                        sleep(1)
-                        clear()
-                        
+                                        match input_operation:
+                                            case '1':
+                                                amount = float(input("Enter the amount to withdraw: "))
+                                                password_ = input("Enter your password: ")
+                                                operations.withdraw(account_number, amount, password_, engine)
+                                                oia = input("Press Enter to continue...")
+                                            
+                                            case '2':
+                                                amount = float(input("Enter the amount to deposit: "))
+                                                password_ = input("Enter your password: ")
+                                                operations.deposit(account_number, amount, password_, engine)
+                                                oia = input("Press Enter to continue...")
+                                            
+                                            case '3':
+                                                # Get and display transaction history
+                                                operations.get_history(account_number)
+                                                oia = input("Press Enter to continue...")
+                                            
+                                            case '0':
+                                                # end of the loop to perform operations on the selected account
+                                                clear()
+                                                break
+                                            
+                                            case _:
+                                                print("Invalid operation selected. Please try again.")
+                                                clear()
+                            
+                                case '0':
+                                    # end of the menu3
+                                    clear()
+                                    break
                     case '0':
+                        # end of the menu2
                         clear()
                         break
                                     
