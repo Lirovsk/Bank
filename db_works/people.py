@@ -42,8 +42,8 @@ class peopleManagement:
         """Retrieves a person instance from the database by name."""
         with Session(engine) as session:
             person = session.query(Pessoa).filter(Pessoa.nome == name).first()
+        
+        if person and person.senha == password:
             return person
-        if person.senha == password:
-            return person
-        return print("invalid password")
+        return None
     

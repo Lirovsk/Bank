@@ -35,3 +35,24 @@ class accountManagement:
         with Session(engine) as session:
             accounts = session.query(Conta).filter(Conta.pessoa_id == id_owner).all()
             return accounts
+        
+    @staticmethod
+    def get_all_accounts(person_id: int, engine: Engine):
+        """
+        Retrieves all accounts associated with a given person ID.
+        Args:
+            person_id (int): The unique identifier of the person whose accounts are to be retrieved.
+            engine (Engine): The SQLAlchemy engine used to connect to the database.
+        Returns:
+            list: A list of Conta objects associated with the person ID.
+        Raises:
+            Exception: Prints an error message if an exception occurs during the database query.
+        """
+        
+        with Session(engine) as session:
+            try:
+                accounts = session.query(Conta).filter(Conta.pessoa_id == person_id).all()
+                return accounts
+            except Exception as e:
+                print(f"Error occurred: {e}")
+        return []

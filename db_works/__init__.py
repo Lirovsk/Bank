@@ -9,6 +9,6 @@ from .agency_creation import agencyCreation
 from .agency_creation import agencyStorageCreation
 from .people import peopleManagement
 from .account import accountManagement
-from .operations import operations    
+from .operations import operations
 
-__version__ = "0.4.0"
+__version__ = "0.7.0"
